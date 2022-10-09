@@ -1,10 +1,30 @@
-<div class="container">
+<div class="spinner-grow text-primary" role="status" *ngIf="!hasData">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<div class="container my-4" *ngIf="hasData">
     <div class="row justify-content-center">
-        <div class="col-4">
-          One of two columns
+      <div class="col-12">
+        <h1>{{character.name}}</h1>
+      </div>
+        <div class="col-6">
+          <div>
+            <img [src]="character.image" class="img-fluid" [alt]="character.name">
+          </div>
         </div>
-        <div class="col-4">
-          One of two columns
+        <div class="col-6 mb-4">
+          <ul class="list-group">
+            <li class="list-group-item">ID: {{character.id}}</li>
+            <li class="list-group-item">Gender: {{character.gender}}</li>
+            <li class="list-group-item">Specie: {{character.species}}</li>
+            <li class="list-group-item">Type: {{character.type}}</li>
+            <li class="list-group-item">Location: {{character.location.name}}</li>
+            <li class="list-group-item">Created: {{character.created | date}}</li>
+            <li class="list-group-item">Status: {{character.status}}</li>
+          </ul>
+        </div>
+        <hr>
+        <div class="col-12">
+          <h5 *ngFor="let epi of episodes"><span class="badge bg-secondary"><a [ngStyle]="{'color': 'white'}" routerLink="epi">Episode: {{epi}}</a></span></h5>
         </div>
       </div>
 </div>

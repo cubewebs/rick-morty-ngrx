@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CharactersResponse } from '../models/CharactersResponse';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { CharactersResponse } from '../models/CharactersResponse';
 })
 export class SharedService {
 
-  baseUrl: string = 'https://rickandmortyapi.com/api'
+  baseUrl: string = environment.baseUrl;
 
   constructor(
     private http: HttpClient

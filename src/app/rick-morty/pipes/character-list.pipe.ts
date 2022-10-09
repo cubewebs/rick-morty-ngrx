@@ -8,7 +8,7 @@ import { CharactersService } from 'src/app/services/characters.service';
 export class CharacterListPipe implements PipeTransform {
 
   transform(characters: Character[], page: number = 0): Character[] {
-    return characters.slice(page, page + 20);
+    return []//characters.slice(page, page + 20);
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Observer, Subscriber, Subscription, tap } from 'rxjs';
+import { Character } from './models/CharactersResponse';
+import { SearchService } from './services/search.service';
 import { SharedService } from './services/shared.service';
 
 @Component({
@@ -9,27 +11,44 @@ import { SharedService } from './services/shared.service';
 })
 export class AppComponent implements OnInit {
   title = 'rxjs - ngrx';
-  parrafo: string = '';
-  characters: any;
+  term: string = '';
+  hasError: boolean = false;
+  results: Character[] = [];
   
 
 
   constructor(
-    private ss: SharedService
+    private ss: SharedService,
+    private searchService: SearchService
   ) {
     
   }
 
-  ngOnInit(): void {
-    this.getCharacters();
+  ngOnInit(): void {}
+
+  search() {
+    this.hasError = false;
+    console.log('terminno: ', this.term);
+
+    this.searchService.searchCharacters( this.term ).subscribe(
+      resp => {
+        console.log('resp', resp.results)
+        this.results = resp.results
+      },
+      err => {
+        this.hasError = true;
+        this.results = [];
+        console.log('error: ', err)
+      },
+      () => {
+        console.log('completed ')
+      }
+    )
   }
 
-  getCharacters() {
-    this.ss.getCharacters().pipe(
-      tap( rp => console.log('rp', rp))
-    ).subscribe(
-      resp => this.characters = resp
-    )
+  onMore() {
+    this.term = '';
+    this.results = [];
   }
 
 }
