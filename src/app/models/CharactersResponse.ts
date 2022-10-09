@@ -1,3 +1,5 @@
+import { Episode } from "./EpisodesResponse";
+
 export interface CharactersResponse {
     info:    Info;
     results: Character[];
@@ -20,7 +22,7 @@ export interface Character {
     origin:   Location;
     location: Location;
     image:    string;
-    episode:  string[];
+    episode:  Episode[];
     url:      string;
     created:  Date;
 }

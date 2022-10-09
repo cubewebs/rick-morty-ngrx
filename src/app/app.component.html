@@ -1,10 +1,70 @@
-<div class="container">
+
     <div class="row">
         <div class="col-12">
-            <a routerLink="character-list">Character List</a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container-fluid">
+                  <a class="navbar-brand" routerLink="/"><img src="../assets/img/rick-morty.png" alt="Rick & Morty Logo" width="60"></a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link" routerLink="/character-list">Characters</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" routerLink="/episode-list">Episodes</a>
+                      </li>
+                    </ul>
+                    <form class="d-flex" role="search" (ngSubmit)="search()">
+                      <input class="form-control me-2" 
+                             type="search" 
+                             placeholder="Search" 
+                             aria-label="Search"
+                             autocomplete="off"
+                             name="term"
+                             [(ngModel)]="term">
+                      <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+        </div>
+    </div>
+
+<div class="container" *ngIf="term">
+    <div class="alert alert-danger my-5" *ngIf="hasError && term">
+        No matches found with {{term}}
+    </div>
+
+    <div class="row mt-4" *ngIf="results.length > 0">
+        <div class="col">
+          <cdk-virtual-scroll-viewport class="scrolling-container" itemSize="80">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *cdkVirtualFor="let re of results">
+                      <td>{{re.id}}</td>
+                      <td><img style="width: 100px" [src]="re.image" [alt]="re.name"></td>
+                      <td>{{re.name}}</td>
+                      <td>{{re.gender}}</td>
+                      <td><a [routerLink]="['/character/', re.id]" (click)="onMore()">More...</a></td>
+                    </tr>
+                </tbody>
+              </table>
+            </cdk-virtual-scroll-viewport>
         </div>
     </div>
 </div>
-<div class="container">
+
+<div class="container my-4" *ngIf="!term">
     <router-outlet></router-outlet>
 </div>

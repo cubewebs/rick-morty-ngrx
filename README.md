@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
 
+# NGRX & RXJS
+
+This project is using ngrx version 14.3.2 https://ngrx.io/docs and rxjs 7.5.0 https://rxjs.dev/guide/operators to keep track of all the states in the app.
+
+# RICK AND MORTY API
+
+Retriving the data from https://rickandmortyapi.com/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

@@ -1,4 +1,4 @@
-<h1>Rick & Morty Character List</h1>
+<h1>Rick & Morty Episode List</h1>
 <hr>
 
 <nav aria-label="Page navigation example" class="mb-3">
@@ -15,17 +15,17 @@
     </ul>
   </nav>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let char of characters">
+    <div class="col" *ngFor="let epi of episodes">
       <div class="card text-bg-dark h-100">
-        <img [src]="char.image" class="card-img-top" [alt]="char.name">
-        <div class="card-header">Location: {{char.location.name}}</div>
+        <!-- <img src="../../../assets/img/19.jpeg" class="card-img-top" [alt]="epi.name"> -->
+        <div class="card-header">Episode: {{epi.episode}}</div>
         <div class="card-body">
-          <h5 class="card-title">{{char.name}}</h5>
-          <p class="card-text">{{char.gender}}</p>
-          <a [routerLink]="['/character/', char.id]" class="btn btn-secondary">More info</a>
+          <h5 class="card-title">Episode Name: {{epi.name}}</h5>
+          <p class="card-text">Air Date: {{epi.air_date | date}}</p>
+          <!-- <a [routerLink]="['/episode/', epi.id]" class="btn btn-secondary">More info</a> -->
         </div>
         <div class="card-footer text-light">
-            ID Number: {{char.id}}
+            ID Number: {{epi.id}}
           </div>
       </div>
     </div>
